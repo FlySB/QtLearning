@@ -306,6 +306,12 @@ class Mainwindow(object):
                 # 插入order表
                 self.cursor.execute("select max(order_id) from `order`;")
                 maxid = self.cursor.fetchall()
+                # print(maxid[0][0]+1)
+                # print(self.result[i][1])
+                # print(self.result[i][3].strftime('%Y-%m-%d'))
+                # print(self.number)
+                # print(float(self.number)*float(self.result[i][4]))
+                # print(datetime.datetime.now().strftime('%Y-%m-%d'))
                 sql2 = "insert into `order` value({max_id},{room_id},'{start_date}','{end_date}',{num},{price},'{create_date}');".format(max_id=maxid[0][0]+1,room_id = self.result[i][1],start_date = self.result[i][3].strftime('%Y-%m-%d'),end_date = self.result[i][3].strftime('%Y-%m-%d'),num = self.number, price = float(self.number)*float(self.result[i][4]),create_date=datetime.datetime.now().strftime('%Y-%m-%d'))
                 print(sql2)
                 self.cursor.execute(sql2)
