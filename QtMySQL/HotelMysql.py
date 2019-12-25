@@ -315,6 +315,7 @@ class Mainwindow(object):
                 sql2 = "insert into `order` value({max_id},{room_id},'{start_date}','{end_date}',{num},{price},'{create_date}');".format(max_id=maxid[0][0]+1,room_id = self.result[i][1],start_date = self.result[i][3].strftime('%Y-%m-%d'),end_date = self.result[i][3].strftime('%Y-%m-%d'),num = self.number, price = float(self.number)*float(self.result[i][4]),create_date=datetime.datetime.now().strftime('%Y-%m-%d'))
                 print(sql2)
                 self.cursor.execute(sql2)
+                self.db.commit()
                 source.setText("已预订")
                 print(self.result[i])
                 time = datetime.datetime.now()
@@ -379,6 +380,7 @@ class Mainwindow(object):
                                                           (4, 4, '2018-11-14', '2018-11-16', 2, 2400.00, '2018-11-01'),
                                                           (5, 2, '2018-11-14', '2018-11-16', 4, 4000.00, '2018-11-01'),
                                                           (6, 2, '2018-11-14', '2018-11-16', 4, 4000.00, '2018-11-01');""")
+        self.db.commit()
         time = datetime.datetime.now()
         print(datetime.datetime.strftime(time, '%Y-%m-%d %H:%M:%S')+"\t复原按钮按下")
         print("\n\n")
